@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Dynamic Data Visualization</title>
+</head>
+
+<body>
+
+<h3>Gross Domestic Product (Current US$ in Trillions)</h3>
+
+<div id="chart" style="width:600px;height:400px;"></div>
+
+<h4>Select Regions to Include:</h4>
+
+<input type="checkbox" id="asia" checked> East Asia & Pacific <br>
+<input type="checkbox" id="europe" checked> Europe & Central Asia <br>
+<input type="checkbox" id="latin" checked> Latin America & Caribbean <br>
+<input type="checkbox" id="mena" checked> Middle East & North Africa <br>
+<input type="checkbox" id="southasia" checked> South Asia <br>
+<input type="checkbox" id="africa" checked> Sub-Saharan Africa <br>
+
+<script src="js/flotr2.min.js"></script>
+<script src="js/underscore-min.js"></script>
+
+<script>
+
+var eastAsia = [
+[1960,0.3],[1970,1.0],[1980,4.2],[1990,8.5],[2000,10.0],[2010,22.0]
+];
+
+var europe = [
+[1960,0.5],[1970,1.5],[1980,2.5],[1990,5.0],[2000,7.5],[2010,12.0]
+];
+
+var latin = [
+[1960,0.2],[1970,0.4],[1980,0.7],[1990,1.2],[2000,1.6],[2010,4.8]
+];
+
+var mena = [
+[1960,0.1],[1970,0.3],[1980,0.5],[1990,0.8],[2000,1.1],[2010,2.0]
+];
+
+var southasia = [
+[1960,0.1],[1970,0.2],[1980,0.4],[1990,0.7],[2000,1.0],[2010,2.3]
+];
+
+var africa = [
+[1960,0.1],[1970,0.2],[1980,0.3],[1990,0.4],[2000,0.8],[2010,1.5]
+];
+
+function drawChart(){
+
+var data = [];
+
+if(document.getElementById("asia").checked){
+data.push({data:eastAsia,label:"East Asia & Pacific"});
+}
+
+if(document.getElementById("europe").checked){
+data.push({data:europe,label:"Europe & Central Asia"});
+}
+
+if(document.getElementById("latin").checked){
+data.push({data:latin,label:"Latin America & Caribbean"});
+}
+
+if(document.getElementById("mena").checked){
+data.push({data:mena,label:"Middle East & North Africa"});
+}
+
+if(document.getElementById("southasia").checked){
+data.push({data:southasia,label:"South Asia"});
+}
+
+if(document.getElementById("africa").checked){
+data.push({data:africa,label:"Sub-Saharan Africa"});
+}
+
+Flotr.draw(
+document.getElementById("chart"),
+data,
+{
+lines:{show:true},
+grid:{horizontalLines:true,verticalLines:true},
+legend:{position:'ne'}
+}
+);
+}
+
+window.onload = function(){
+
+drawChart();
+
+var inputs = document.querySelectorAll("input");
+
+for(var i=0;i<inputs.length;i++){
+inputs[i].onchange = drawChart;
+}
+
+}
+</script>
+
+</body>
+</html>

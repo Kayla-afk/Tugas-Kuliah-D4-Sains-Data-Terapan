@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Keliling dan Luas Lingkaran</title>
+</head>
+
+<body>
+
+<h2>Perhitungan Keliling dan Luas Lingkaran</h2>
+
+Masukkan jari-jari:
+<input type="number" id="r">
+
+<button onclick="hitung()">Hitung</button>
+
+<p id="hasil"></p>
+
+<script>
+
+function hitung(){
+
+var r = document.getElementById("r").value;
+
+var keliling = 2 * Math.PI * r;
+var luas = Math.PI * r * r;
+
+document.getElementById("hasil").innerHTML =
+"Keliling = " + keliling.toFixed(2) + "<br>" +
+"Luas = " + luas.toFixed(2);
+
+}
+
+</script>
+
+</body>
+</html>
